@@ -25,6 +25,9 @@ export class InstrutorTypeormRepository implements InstrutorRepository {
         registro: true,
         id: true,
       },
+      relations: {
+        roles: true,
+      },
       where: {
         registro,
       },

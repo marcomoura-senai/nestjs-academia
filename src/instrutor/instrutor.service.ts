@@ -40,7 +40,10 @@ export class InstrutorService {
 
     const { senha: _, ...instrutorWithoutPassword } = instrutor;
 
-    const jwt = this.jwtService.sign(instrutorWithoutPassword);
+    const jwt = this.jwtService.sign({
+      ...instrutorWithoutPassword,
+      roles: instrutorWithoutPassword.roles.map((r) => r.role),
+    });
 
     return { jwt };
   }

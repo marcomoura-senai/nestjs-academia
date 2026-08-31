@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Role } from './roles.entity';
+import { Role, RolesEnum } from './roles.entity';
 import { AssignRoleDto } from './dto/assign-role.dto';
 import { Instrutor } from '../@common/entities/instrutor.entity';
 
@@ -14,7 +14,7 @@ export class RoleService {
   ) {}
 
   async create(role: string) {
-    const roleEntity = this.roleRepository.create({ role: role });
+    const roleEntity = this.roleRepository.create({ role: role as RolesEnum });
     return this.roleRepository.save(roleEntity);
   }
 

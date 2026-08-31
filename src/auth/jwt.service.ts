@@ -5,7 +5,7 @@ import { AuthUserDto } from '../@common/dto/auth-user.dto';
 
 @Injectable()
 export class JwtService {
-  sign(payload: object) {
+  sign(payload: AuthUserDto['data']) {
     if (!process.env.JWT_SECRET || !process.env.JWT_CIPHER_KEY) {
       throw new Error('JWT_SECRET not set');
     }
@@ -33,7 +33,7 @@ export class JwtService {
       process.env.JWT_SECRET,
       {
         expiresIn: '8h', // TODO: expiração via variável de ambiente
-        issuer: 'sctec', // TODO: Validar ISSUER junto com o token na autenticação. E também colocar como variável de ambiente
+        issuer: 'sctec',
       },
     );
   }

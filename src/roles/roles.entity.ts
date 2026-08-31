@@ -7,13 +7,19 @@ import {
 } from 'typeorm';
 import { Instrutor } from '../@common/entities/instrutor.entity';
 
+export enum RolesEnum {
+  ADMIN = 'admin',
+  PLEBEU = 'plebeu',
+  INSTRUTOR = 'instrutor',
+}
+
 @Entity()
 export class Role {
   @PrimaryGeneratedColumn('identity', { generatedIdentity: 'ALWAYS' })
   id!: number;
 
   @Column('varchar', { length: 255 })
-  role!: string;
+  role!: RolesEnum;
 
   @ManyToMany(() => Instrutor, (instrutor) => instrutor.roles)
   @JoinTable()
