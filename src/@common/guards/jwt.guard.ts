@@ -2,6 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  Logger,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
@@ -19,6 +20,8 @@ export class JwtGuard implements CanActivate {
     private readonly reflector: Reflector,
   ) {}
 
+  private logger = new Logger(JwtGuard.name);
+
   private extractToken(context: ExecutionContext) {
     const expressReq = context.switchToHttp().getRequest<Request>();
 
@@ -31,6 +34,7 @@ export class JwtGuard implements CanActivate {
     if (bearerString !== 'Bearer') {
       throw new UnauthorizedException('Invalid token provided');
     }
+    this.logger.debug(`Extracted token: ${token}`);
 
     return token;
   }

@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "name": "Debug: Node",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "sourceMaps": true,
+      "smartStep": true,
+      "autoAttachChildProcesses": true,
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js",
+        "!**/node_modules/**"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/typescript/**"
+      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**/*.js"]
+    }
+  ]
+}

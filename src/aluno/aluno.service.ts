@@ -21,16 +21,33 @@ export class AlunoService {
   find(searchAlunoDto: SearchAlunoDto) {
     const queryBuilder = this.alunoRepository.createQueryBuilder('aluno');
 
-    if (searchAlunoDto.nome) {
-      queryBuilder.andWhere('aluno.nome LIKE :nome', {
-        nome: `%${searchAlunoDto.nome}%`,
+    if (searchAlunoDto.nomes) {
+      searchAlunoDto.nomes.forEach((nome) => {
+        queryBuilder.orWhere('aluno.nome LIKE :nome', {
+          nome: `${nome}%`,
+        });
       });
     }
 
-    if (searchAlunoDto.plano) {
-      queryBuilder.andWhere('aluno.plano LIKE :plano', {
-        plano: `%${searchAlunoDto.plano}%`,
+    if (searchAlunoDto.planos) {
+      searchAlunoDto.planos.forEach((plano) => {
+        queryBuilder.orWhere('aluno.plano LIKE :plano', {
+          plano: `${plano}%`,
+        });
       });
+    }
+
+    if (searchAlunoDto.orderBy) {
+      queryBuilder.orderBy(
+        searchAlunoDto.orderBy.field,
+        searchAlunoDto.orderBy.order,
+      );
+    }
+
+    if (searchAlunoDto.page) {
+      queryBuilder
+        .offset((searchAlunoDto.page.number - 1) * searchAlunoDto.page.size)
+        .limit(searchAlunoDto.page.size);
     }
 
     return queryBuilder.getMany();
