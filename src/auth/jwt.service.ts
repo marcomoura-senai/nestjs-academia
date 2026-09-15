@@ -33,7 +33,7 @@ export class JwtService {
       process.env.JWT_SECRET,
       {
         expiresIn: '8h', // TODO: expiração via variável de ambiente
-        issuer: 'sctec',
+        issuer: 'sctec', // TODO: issuer via variável de ambiente
       },
     );
   }
