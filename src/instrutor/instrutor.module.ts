@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { InstrutorController } from './instrutor.controller';
-import { InstrutorService } from './instrutor.service';
+import { batat } from './instrutor.service';
 import {
   InstrutorTypeormRepository,
   TYPEORM_INSTRUTOR_REPOSITORY,
@@ -15,7 +15,7 @@ import { InstrutorLoginController } from './instrutor-login.controller';
   imports: [JwtModule],
   controllers: [InstrutorController, InstrutorLoginController],
   providers: [
-    InstrutorService,
+    batat,
     {
       provide: InstrutorRepository, // Quando pedir a porta
       useClass: InstrutorTypeormRepository, // Usar a implementação

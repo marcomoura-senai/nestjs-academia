@@ -7,14 +7,14 @@ import {
   Post,
 } from '@nestjs/common';
 import { CreateInstrutorDto } from './dto/create-instrutor.dto';
-import { InstrutorService } from './instrutor.service';
+import { batat } from './instrutor.service';
 import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { GetInstrutorResponse } from './dto/response/get-instrutor.response';
 import { CreatedInstrutorResponse } from './dto/response/created-instrutor.response';
 
 @Controller('instrutores')
 export class InstrutorController {
-  constructor(private readonly instrutorService: InstrutorService) {}
+  constructor(private readonly instrutorService: batat) {}
 
   @Get(':id')
   @ApiOkResponse({ type: GetInstrutorResponse })

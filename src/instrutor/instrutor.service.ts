@@ -1,4 +1,4 @@
-import { compare, genSalt, hash } from 'bcrypt';
+import { genSalt, hash, compare } from 'bcrypt';
 import {
   Injectable,
   NotFoundException,
