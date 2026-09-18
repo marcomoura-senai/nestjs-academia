@@ -1,4 +1,3 @@
-import { expect, it, describe, beforeAll, jest } from '@jest/globals';
 import { InstrutorService } from '../instrutor.service';
 import { InstrutorRepository } from '../instrutor.repository';
 import { Instrutor } from '../../@common/entities/instrutor.entity';

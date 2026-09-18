@@ -1,11 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
-import { batat } from './instrutor.service';
+import { InstrutorService } from './instrutor.service';
 
 @Controller('instrutores/login')
 export class InstrutorLoginController {
-  constructor(private readonly instrutorService: batat) {}
+  constructor(private readonly instrutorService: InstrutorService) {}
 
+  @HttpCode(200)
   @Post()
   login(@Body() loginDto: LoginDto) {
     return this.instrutorService.login(loginDto);

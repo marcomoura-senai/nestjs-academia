@@ -3,8 +3,9 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from '../src/app.module';
+import { InstrutorLoginController } from '../src/instrutor/instrutor-login.controller';
 
-describe('AppController (e2e)', () => {
+describe(`${InstrutorLoginController.name} (e2e)`, () => {
   let app: INestApplication<App>;
 
   beforeEach(async () => {
@@ -16,11 +17,13 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+  it('/ (GET)', async () => {
+    // localhost:3000/instrutores/login
+    const result = await request(app.getHttpServer()).post(
+      '/instrutores/login',
+    );
+
+    expect(result.status).toBe(200);
   });
 
   afterEach(async () => {
