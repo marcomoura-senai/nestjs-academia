@@ -11,6 +11,7 @@ export enum RolesEnum {
   ADMIN = 'admin',
   PLEBEU = 'plebeu',
   INSTRUTOR = 'instrutor',
+  FINANCEIRO = 'financeiro',
 }
 
 @Entity()

@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { initDatabase } from './@common/database/typeorm/typeorm';
 import { LogLevel, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 
 // Inicialização
 async function bootstrap() {
@@ -19,6 +20,8 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+
+  app.use(helmet());
 
   const config = new DocumentBuilder()
     .setTitle('NestJS Academia')

@@ -38,6 +38,22 @@ export class InstrutorTypeormRepository implements InstrutorRepository {
     return this.repository.findOneBy({ id });
   }
 
+  async getPasswordByRegistroRaw(registro: string) {
+    // Exemplo ERRADO
+    await this.repository.query(
+      `
+      SELECT * FROM instrutor 
+      WHERE instrutor.registro = ${registro} `,
+    );
+
+    await this.repository.query(
+      `
+      SELECT * FROM instrutor 
+      WHERE instrutor.registro = :registro`,
+      { registro },
+    );
+  }
+
   async create(instrutor: CreateInstrutorDto): Promise<Instrutor> {
     const instrutorEntity = this.repository.create(instrutor);
     const savedInstrutor = await this.repository.save(instrutorEntity);

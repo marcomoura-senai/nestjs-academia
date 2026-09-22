@@ -9,6 +9,11 @@ import { CreateInstrutorDto } from './dto/create-instrutor.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '../auth/jwt.service';
 
+const mockPassword =
+  'askjfjksdhjkgsfjlkgbnjfdklnbjkldfgnjklbsndfjkbnjklfnbjklkjlnsdnbfjaskjfjksdhjkgsfjlkgbnjfdklnbjkldfgnjklbsndfjkbnjklfnbjklkjlnsdnbfjaskjfjksdhjkgsfjlkgbnjfdklnbjkldfgnjklbsndfjkbnjklfnbjklkjlnsdnbfjaskjfjksdhjkgsfjlkgbnjfdklnbjkldfgnjklbsndfjkbnjklfnbjklkjlnsdnbfj';
+
+const mockHash = '$2b$10$liPXVrx7zaMeWgeQDfUCNubFoRyNQ/ev3kYzIkZAB19jZySmbjBCG';
+
 @Injectable()
 export class InstrutorService {
   constructor(
@@ -31,6 +36,7 @@ export class InstrutorService {
     );
 
     if (!instrutor) {
+      await compare(mockPassword, mockHash);
       throw new UnauthorizedException();
     }
 
